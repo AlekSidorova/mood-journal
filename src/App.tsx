@@ -1,7 +1,12 @@
-export default function App() {
+import React from "react";
+import MoodForm from "./pages/MoodForm";
+
+const App: React.FC = () => {
   return (
-    <h1 className="text-3xl font-bold text-red-500">
-      Tailwind работает! 🎉
-    </h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <MoodForm />
+    </div>
   );
-}
+};
+
+export default App;
