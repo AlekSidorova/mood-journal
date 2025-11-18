@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import type { MoodEntry } from "../types";
-import MoodButtons from "../components/MoodButtons";
-import MoodTextarea from "../components/MoodTextarea";
-import ColorPicker from "../components/ColorPicker";
-import { addMoodEntry } from "../utils/storage";
+import type { MoodEntry } from "../../types";
+import MoodButtons from "../../components/MoodButtons/MoodButtons";
+import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
+import ColorPicker from "../../components/ColorPicker/ColorPicker";
+import { addMoodEntry } from "../../utils/storage";
 
 const MoodForm: React.FC = () => {
   //хранит текущее значение настроения-изначально оно пустое

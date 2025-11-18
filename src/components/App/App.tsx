@@ -1,9 +1,10 @@
 import React from "react";
-import MoodForm from "./pages/MoodForm";
+import MoodForm from "../../pages/MoodForm/MoodForm";
+import styles from "./App.module.css";
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className={styles.app}>
       <MoodForm />
     </div>
   );

@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; 
+  margin: 1rem 0; 
+}
+
+.label {
+  font-size: 0.875rem; 
+  color: #4b5563; 
+}
+
+.colors {
+  display: flex;
+  gap: 0.75rem; 
+}
+
+.colorButton {
+  width: 2rem; 
+  height: 2rem; 
+  border-radius: 50%; 
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.colorButtonSelected {
+  border-color: black;
+}

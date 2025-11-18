@@ -1,5 +1,6 @@
 import React from "react";
-import type { MoodButtonsProps } from "../types";
+import type { MoodButtonsProps } from "../../types";
+import styles from "./MoodButtons.module.css";
 
 const MoodButtons: React.FC<MoodButtonsProps> = ({
   selectedMood,
@@ -9,14 +10,16 @@ const MoodButtons: React.FC<MoodButtonsProps> = ({
   const moods = ["😄", "😐", "😣"];
 
   return (
-    <div className="flex gap-4 my-4">
+    <div className={styles.container}>
       {moods.map((emoji) => (
         <button
           key={emoji}
           type="button"
-          className={`text-2x1 p-2 rounded-full border-2 ${
-            selectedMood === emoji ? "border-blue-500" : "border-transparent"
-          }`}
+          className={
+            selectedMood === emoji
+              ? `${styles.button} ${styles.buttonSelected}`
+              : styles.button
+          }
           onClick={() => onSelect(emoji)}
         >
           {emoji}

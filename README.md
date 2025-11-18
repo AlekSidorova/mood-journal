@@ -1,6 +1,6 @@
 # Mood Journal
 
-Простой дневник настроения на React + TypeScript + Tailwind.
+Простой дневник настроения на React + TypeScript.
 
 ## Структура
 
