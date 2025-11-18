@@ -12,3 +12,9 @@ export interface MoodButtonsProps {
   selectedMood: string; //текущее выбранное настроение(для визуала)
   onSelect: (mood: string) => void; //принимает строку (эмодзи)
 };
+
+//интерфейс для поля заметки
+export interface MoodTextareaProps {
+  value: string; //текущее значение текстового поля
+  onChange: (value: string) => void; //изменения текста
+};
