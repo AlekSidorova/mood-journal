@@ -3,6 +3,7 @@ import type { MoodEntry } from "../types";
 import MoodButtons from "../components/MoodButtons";
 import MoodTextarea from "../components/MoodTextarea";
 import ColorPicker from "../components/ColorPicker";
+import { addMoodEntry } from "../utils/storage";
 
 const MoodForm: React.FC = () => {
   //хранит текущее значение настроения-изначально оно пустое
@@ -25,8 +26,8 @@ const MoodForm: React.FC = () => {
       color,
     };
 
-    //ВРЕМЕННО логирование новой записи
-    console.log("Новая запись:", newEntry);
+    //добавляем новую запись
+    addMoodEntry(newEntry);
 
     //ВРЕМЕННО очистка форм
     setMood("");
