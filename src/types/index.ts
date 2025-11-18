@@ -18,3 +18,9 @@ export interface MoodTextareaProps {
   value: string; //текущее значение текстового поля
   onChange: (value: string) => void; //изменения текста
 };
+
+//интерфейс для выбора цвета настроения
+export interface ColorPickerProps {
+  selectedColor: string; //выбранный цвет
+  onSelect: (color: string) => void; //принимаем цвет
+};

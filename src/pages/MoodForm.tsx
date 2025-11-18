@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import type { MoodEntry } from "../types";
-import MoodButtons from "../components/MoodButtons"
+import MoodButtons from "../components/MoodButtons";
 import MoodTextarea from "../components/MoodTextarea";
+import ColorPicker from "../components/ColorPicker";
 
 const MoodForm: React.FC = () => {
   //хранит текущее значение настроения-изначально оно пустое
@@ -37,8 +38,9 @@ const MoodForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Добавить запись настроения</h2>
-      <MoodButtons selectedMood={mood} onSelect={setMood} /> 
+      <MoodButtons selectedMood={mood} onSelect={setMood} />
       <MoodTextarea value={note} onChange={setNote} />
+      <ColorPicker selectedColor={color} onSelect={setColor} />
       <button type="submit">Сохранить</button>
     </form>
   );
