@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { MoodEntry } from "../../types";
 import MoodButtons from "../../components/MoodButtons/MoodButtons";
-import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
+//import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import { addMoodEntry } from "../../utils/storage";
 import styles from "./MoodForm.module.css";
@@ -47,7 +47,9 @@ const MoodForm: React.FC = () => {
         <br /> чувствуешь?
       </h2>
       <MoodButtons selectedMood={mood} onSelect={setMood} />
-      <MoodTextarea value={note} onChange={setNote} />
+      
+      {/* <MoodTextarea value={note} onChange={setNote} /> */}
+
       <button type="submit">Сохранить</button>
     </form>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import MoodForm from "../../pages/MoodForm/MoodForm";
+import MoodList from "../../pages/MoodList/MoodList";
 import styles from "./App.module.css";
 
 const App: React.FC = () => {
@@ -7,6 +8,7 @@ const App: React.FC = () => {
     <div className={styles.app}>
       <div className={styles.moodBackground}>
         <MoodForm />
+        <MoodList />
       </div>
     </div>
   );
