@@ -4,6 +4,7 @@ import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import { addMoodEntry } from "../../utils/storage";
+import styles from "./MoodForm.module.css";
 
 const MoodForm: React.FC = () => {
   //хранит текущее значение настроения-изначально оно пустое
@@ -38,10 +39,15 @@ const MoodForm: React.FC = () => {
   //разметка формы
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Добавить запись настроения</h2>
+      <h3 className={styles.color}>Цвет дня</h3>
+      <ColorPicker selectedColor={color} onSelect={setColor} />
+
+      <h2 className={styles.mood}>
+        Как ты себя
+        <br /> чувствуешь?
+      </h2>
       <MoodButtons selectedMood={mood} onSelect={setMood} />
       <MoodTextarea value={note} onChange={setNote} />
-      <ColorPicker selectedColor={color} onSelect={setColor} />
       <button type="submit">Сохранить</button>
     </form>
   );

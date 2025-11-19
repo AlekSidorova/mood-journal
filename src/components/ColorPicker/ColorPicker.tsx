@@ -9,7 +9,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <label className={styles.label}>Цвет дня</label>
 
       <div className={styles.colors}>
         {COLORS.map((color) => (

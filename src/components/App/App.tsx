@@ -5,7 +5,9 @@ import styles from "./App.module.css";
 const App: React.FC = () => {
   return (
     <div className={styles.app}>
-      <MoodForm />
+      <div className={styles.moodBackground}>
+        <MoodForm />
+      </div>
     </div>
   );
 };

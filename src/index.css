@@ -8,11 +8,26 @@
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   background-color: #f5f5f5;
   color: #000;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* подключение локальных шрифтов */
+@font-face {
+  font-family: 'Yiggivoo Unicode';
+  src: url('./assets/fonts/Yiggivoo_UC.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url('./assets/fonts/OpenSansCondensed-Light.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
 }
