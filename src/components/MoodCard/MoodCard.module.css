@@ -1,0 +1,47 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  color: #000;
+  font-family: "Yiggivoo Unicode", sans-serif;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* расстояние между блоками */
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: column; /* дата сверху, время снизу */
+}
+
+.date {
+  color: #000;
+  font-family: "Yiggivoo Unicode", sans-serif;
+  font-size: 32px;
+  line-height: 125%;
+  text-align: center;
+}
+
+.time {
+  color: #000;
+  font-family: 'Open Sans Light', sans-serif;
+  font-size: 20px;
+  text-align: right;
+}
+
+.moodIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.note {
+  flex: 1; /* чтобы заметка занимала оставшееся место */
+  font-size: 1rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}

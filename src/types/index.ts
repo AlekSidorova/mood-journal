@@ -24,3 +24,8 @@ export interface ColorPickerProps {
   selectedColor: string; //выбранный цвет
   onSelect: (color: string) => void; //принимаем цвет
 };
+
+//интерфейс для карточек
+export interface CardProps {
+  entry: MoodEntry;
+};

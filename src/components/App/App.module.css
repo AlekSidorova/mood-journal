@@ -7,21 +7,21 @@
 }
 
 .moodBackground {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* ← ДАЕТ ОСТАВШЕЕСЯ МЕСТО И ПРИЖИМАЕТ НИЗ */
+  align-items: center;
+
   width: 515px;
   height: 708px;
-  border-radius: 50px; /* полностью закругленные края */
+  border-radius: 50px;
   background-color: #ECEDE7;
 
-  /* сетка */
   background-image:
     linear-gradient(to right, #E2E3DB 1px, transparent 1px),
     linear-gradient(to bottom, #E2E3DB 1px, transparent 1px);
   background-size: 26px 26px;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   box-sizing: border-box;
 }

@@ -1,64 +1,16 @@
 .listContainer {
+  width: 411px;
+  height: 267px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 2rem;
   padding: 1rem;
   background-color: #D5DACC;
-  border-radius: 24px;
-
-}
-
-.empty {
-  text-align: center;
-  color: #888;
-  font-size: 1rem;
-  font-family: 'Yiggivoo Unicode', sans-serif;
-}
-
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  position: relative;
-  color: #000;
-  font-family: 'Yiggivoo Unicode', sans-serif;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  gap: 0.5rem;
-  position: relative;
-}
-
-.header::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: #ccc; /* вертикальная линия слева */
-  margin-left: -1rem; /* отступ от текста */
-}
-
-.date {
-  font-size: 0.875rem;
-  color: #555;
-}
-
-.mood {
-  font-size: 1.5rem;
-}
-
-.note {
-  font-size: 1rem;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: auto;
+};

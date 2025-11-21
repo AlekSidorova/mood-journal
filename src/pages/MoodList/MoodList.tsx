@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { MoodEntry } from "../../types";
 import { getMoodEntries } from "../../utils/storage";
 import styles from "./MoodList.module.css";
+import MoodCard from "../../components/MoodCard/MoodCard";
 
 const MoodList: React.FC = () => {
   //entries-массив, который хранит записи о настроении
@@ -22,19 +23,7 @@ const MoodList: React.FC = () => {
     <div className={styles.listContainer}>
       {entries.length === 0 && <p className={styles.empty}>Нет записей</p>}
       {entries.map((entry) => (
-        <div
-          key={entry.id}
-          className={styles.card}
-          style={{ backgroundColor: entry.color }}
-        >
-          <div className={styles.header}>
-            <span className={styles.date}>
-              {new Date(entry.date).toLocaleDateString()}
-            </span>
-            <span className={styles.mood}>{entry.mood}</span>
-          </div>
-          <p className={styles.note}>{entry.note}</p>
-        </div>
+        <MoodCard key={entry.id} entry={entry} />
       ))}
     </div>
   );
