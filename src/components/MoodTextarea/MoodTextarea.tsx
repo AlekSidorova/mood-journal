@@ -8,32 +8,42 @@ const MoodTextarea: React.FC<MoodTextareaProps> = ({
   onChange,
   selectedColor,
   selectedMood,
+  onClose,
+  onSubmit,
 }) => {
   if (!selectedColor || !selectedMood) return null;
 
   const moodIcon = moodImage[selectedMood];
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} style={{ backgroundColor: selectedColor }}>
+      {/* Верхняя строка: дата + смайл */}
       <div className={styles.headerRow}>
-        <div
-          className={styles.colorPreview}
-          style={{ backgroundColor: selectedColor }}
-        />
+        <span className={styles.date}>
+          {new Date().toLocaleDateString(undefined, {
+            day: "2-digit",
+            month: "2-digit",
+          })}
+        </span>
         <img src={moodIcon} alt="emoji" className={styles.moodIcon} />
       </div>
 
-      <div className={styles.content}>
-        <label className={styles.label}>Заметка</label>
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={styles.textarea}
-          placeholder="Как прошел день?"
-        />
-      </div>
-      <button type="submit" className={styles.saveButton}>
-        Сохранить
+      {/* Текстовая зона */}
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={styles.textarea}
+        placeholder="Как прошел день?"
+      />
+
+      {/* Кнопка отправки */}
+      <button type="button" className={styles.sendButton} onClick={onSubmit}>
+        ➤
+      </button>
+
+      {/* Крестик для закрытия */}
+      <button type="button" className={styles.closeButton} onClick={onClose}>
+        ✕
       </button>
     </div>
   );

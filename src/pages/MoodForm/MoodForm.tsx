@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { MoodEntry } from "../../types";
 import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
@@ -14,13 +14,28 @@ const MoodForm: React.FC = () => {
   //выбранный цвет настроения
   const [color, setColor] = useState<string>("");
 
-  const showOverlay = color && mood;
+  //состояние открытия и закрытия заметки
+  const [isOpen, setIsOpen] = useState(false);
 
-  //функция отправки формы
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // закрытие по ESC
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
-    //создание новой записи о настроении
+  // обработчик выбора настроения
+  const handleMoodSelect = (selected: string) => {
+    setMood(selected);
+    if (color) setIsOpen(true); // открываем заметку только если цвет уже выбран
+  };
+
+  // универсальный handleSubmit для формы и кнопки
+  const handleSubmit = (e?: React.FormEvent | React.MouseEvent) => {
+    e?.preventDefault();
+
     const newEntry: MoodEntry = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
@@ -29,22 +44,19 @@ const MoodForm: React.FC = () => {
       color,
     };
 
-    //добавляем новую запись
     addMoodEntry(newEntry);
 
-    //ВРЕМЕННО очистка форм
+    // очистка и закрытие заметки
     setMood("");
     setNote("");
     setColor("");
+    setIsOpen(false);
   };
 
   //разметка формы
   return (
     <div className={styles.formWrapper}>
-      {/* Размытие на фоне */}
-      {showOverlay && <div className={styles.blurOverlay} />}
-
-      {/* Сама форма */}
+      {/* форма */}
       <form onSubmit={handleSubmit}>
         <h3 className={styles.color}>Цвет дня</h3>
         <ColorPicker selectedColor={color} onSelect={setColor} />
@@ -53,16 +65,28 @@ const MoodForm: React.FC = () => {
           Как ты себя
           <br /> чувствуешь?
         </h2>
-        <MoodButtons selectedMood={mood} onSelect={setMood} />
+        <MoodButtons selectedMood={mood} onSelect={handleMoodSelect} />
+      </form>
 
-        {/* Всплывающее окно заметки */}
+      {/* блюр и клик для закрытия */}
+      {isOpen && (
+        <div
+          className={styles.blurOverlay}
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* заметка поверх всего */}
+      {isOpen && (
         <MoodTextarea
           value={note}
           onChange={setNote}
           selectedColor={color}
           selectedMood={mood}
+          onClose={() => setIsOpen(false)}
+          onSubmit={handleSubmit}
         />
-      </form>
+      )}
     </div>
   );
 };
