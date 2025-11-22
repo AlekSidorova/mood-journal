@@ -17,6 +17,8 @@ export interface MoodButtonsProps {
 export interface MoodTextareaProps {
   value: string; //текущее значение текстового поля
   onChange: (value: string) => void; //изменения текста
+  selectedColor: string | null; //выбранный цвет
+  selectedMood: string | null; //выбранная эмоция (ключ из moodImage)
 };
 
 //интерфейс для выбора цвета настроения
