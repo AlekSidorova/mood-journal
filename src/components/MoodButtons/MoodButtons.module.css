@@ -1,12 +1,12 @@
 .container {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   justify-content: center;
 }
 
 .button {
-  width: 102px;
-  height: 102px;  
+  width: 107px;
+  height: 107px;  
   border-radius: 50%; 
   border: 2px solid transparent;
   cursor: pointer;

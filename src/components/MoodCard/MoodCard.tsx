@@ -23,12 +23,15 @@ const MoodCard: React.FC<CardProps> = ({ entry }) => {
           <span className={styles.date}>{dateString}</span>
           <span className={styles.time}>{timeString}</span>
         </div>
-        <img src={moodIcon} alt={entry.mood} className={styles.moodIcon} />
-        <div
-          className={styles.noteContainer}
-          style={{ backgroundColor: entry.color }}
-        >
-          <p className={styles.note}>{entry.note}</p>
+
+        <div className={styles.moodTextLetter}>
+          <img src={moodIcon} alt={entry.mood} className={styles.moodIcon} />
+          <div
+            className={styles.noteContainer}
+            style={{ backgroundColor: entry.color }}
+          >
+            <p className={styles.note}>{entry.note}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -2,16 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* центрируем по экрану */
-  background-color: #f5f5f5; /* цвет страницы вокруг блока */
+  min-height: 100vh; 
+  background-color: #d4d3d3; 
 }
 
 .moodBackground {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* ← ДАЕТ ОСТАВШЕЕСЯ МЕСТО И ПРИЖИМАЕТ НИЗ */
+  justify-content: space-between; 
   align-items: center;
-
   width: 515px;
   height: 708px;
   border-radius: 50px;
@@ -22,6 +21,6 @@
     linear-gradient(to bottom, #E2E3DB 1px, transparent 1px);
   background-size: 26px 26px;
 
-  padding: 2rem 2rem 0 2rem;
+  padding: 0 2rem;
   box-sizing: border-box;
 }
