@@ -15,6 +15,9 @@ const MoodTextarea: React.FC<MoodTextareaProps> = ({
 
   const moodIcon = moodImage[selectedMood];
 
+  //флаг для проверки пустого текста
+  const isEmpty = value.trim() === '';
+
   return (
     <div className={styles.wrapper} style={{ backgroundColor: selectedColor }}>
       {/* Верхняя строка: дата + смайл */}
@@ -37,13 +40,20 @@ const MoodTextarea: React.FC<MoodTextareaProps> = ({
       />
 
       {/* Кнопка отправки */}
-      <button type="button" className={styles.sendButton} onClick={onSubmit}>
-        ➤
-      </button>
+      <button
+        type="button"
+        className={styles.sendButton}
+        onClick={() => {
+          if (!isEmpty) onSubmit?.();
+        }}
+        style={{
+          cursor: isEmpty ? 'not-allowed' : 'pointer',
+          opacity: isEmpty ? 0.3 : 1,
+        }}
+      ></button>
 
       {/* Крестик для закрытия */}
-      <button type="button" className={styles.closeButton} onClick={onClose}>
-        ✕
+      <button type="button" className={styles.closeButton} onClick={() => onClose?.()}>
       </button>
     </div>
   );

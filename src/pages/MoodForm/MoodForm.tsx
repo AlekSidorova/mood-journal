@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import type { MoodEntry } from "../../types";
 import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
@@ -13,18 +13,25 @@ const MoodForm: React.FC = () => {
   const [note, setNote] = useState<string>("");
   //выбранный цвет настроения
   const [color, setColor] = useState<string>("");
-
   //состояние открытия и закрытия заметки
   const [isOpen, setIsOpen] = useState(false);
+
+  // Универсальный обработчик закрытия
+  const handleClose = useCallback(() => {
+    setNote("");
+    setMood("");
+    setColor("");
+    setIsOpen(false);
+  }, []);
 
   // закрытие по ESC
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
+      if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
+  }, [handleClose]);
 
   // обработчик выбора настроения
   const handleMoodSelect = (selected: string) => {
@@ -35,6 +42,8 @@ const MoodForm: React.FC = () => {
   // универсальный handleSubmit для формы и кнопки
   const handleSubmit = (e?: React.FormEvent | React.MouseEvent) => {
     e?.preventDefault();
+
+    if (!note.trim()) return; // запретить пустую заметку
 
     const newEntry: MoodEntry = {
       id: Date.now().toString(),
@@ -47,10 +56,7 @@ const MoodForm: React.FC = () => {
     addMoodEntry(newEntry);
 
     // очистка и закрытие заметки
-    setMood("");
-    setNote("");
-    setColor("");
-    setIsOpen(false);
+    handleClose();
   };
 
   //разметка формы
@@ -72,7 +78,7 @@ const MoodForm: React.FC = () => {
       {isOpen && (
         <div
           className={styles.blurOverlay}
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
         />
       )}
 
@@ -83,7 +89,7 @@ const MoodForm: React.FC = () => {
           onChange={setNote}
           selectedColor={color}
           selectedMood={mood}
-          onClose={() => setIsOpen(false)}
+          onClose={handleClose}
           onSubmit={handleSubmit}
         />
       )}

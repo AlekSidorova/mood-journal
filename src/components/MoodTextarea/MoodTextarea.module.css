@@ -10,7 +10,6 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  background-color: white;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
@@ -18,6 +17,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  gap: 10px;
 }
 
 .date {
@@ -38,7 +38,7 @@
   flex: 1;
   font-family: 'Open Sans Light', sans-serif;
   font-weight: 300;
-  font-size: 32px;
+  font-size: 20px;
   line-height: 136%;
   color: #000;
   border: none;
@@ -51,19 +51,26 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background: #000;
-  color: #fff;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: 0.2s;
+}
+
+.sendButton::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: rotate(-45deg);
+  transform-origin: center;
 }
 
 .sendButton:hover {
@@ -74,10 +81,33 @@
   position: absolute;
   top: 16px;
   right: 16px;
+  width: 24px;  /* подгоняем размер крестика */
+  height: 24px;
   background: transparent;
   border: none;
-  font-size: 24px;
   cursor: pointer;
+  padding: 0;
+}
+
+/* Горизонтальная и вертикальная линии крестика через before и after */
+.closeButton::before,
+.closeButton::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;       /* толщина линии */
+  height: 100%;      /* длина линии */
+  background-color: #000; /* цвет крестика */
+  transform-origin: center;
+}
+
+.closeButton::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closeButton::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .blurOverlay {
@@ -89,47 +119,4 @@
   backdrop-filter: blur(6px);
   background: rgba(0, 0, 0, 0.15);
   z-index: 5;
-}
-
-.moodIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-}
-
-.textarea {
-  flex: 1;
-  border: none;
-  outline: none;
-  color: #000;
-  font-family: "Open Sans Light", sans-serif;
-  font-weight: 300;
-  font-size: 32px;
-  line-height: 136%;
-  background: transparent;
-  resize: none;
-}
-
-.sendButton {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  font-size: 24px;
-  background: #000;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.sendButton:hover {
-  transform: scale(1.1);
 }
