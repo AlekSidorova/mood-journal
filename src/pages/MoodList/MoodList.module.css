@@ -4,7 +4,7 @@
   height: 267px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 20px;
   padding: 35px 0 ;
   background-color: #D5DACC;
   border-radius: 50px 0 0 0;
@@ -12,12 +12,11 @@
   overflow-x: hidden;
   margin-top: auto;
 
-    /* Скроллбар стили */
-  scrollbar-width: thin;       /* для Firefox */
-  scrollbar-color: #ecede7  #D5DACC; /* для Firefox */
+  /* скролл */
+  scrollbar-width: thin;
+  scrollbar-color: #ecede7  #D5DACC;
 };
 
-/* Для Webkit-браузеров (Chrome, Edge, Safari) */
 .listContainer::-webkit-scrollbar {
   width: 8px;
 }
@@ -30,9 +29,5 @@
 .listContainer::-webkit-scrollbar-thumb {
   background-color: #6B6B6B;
   border-radius: 4px;
-  border: 2px solid #D5DACC; /* чтобы был отступ вокруг скролла */
-}
-
-.listContainer::-webkit-scrollbar-thumb:hover {
-  background-color: #444;
+  border: 2px solid #D5DACC;
 }

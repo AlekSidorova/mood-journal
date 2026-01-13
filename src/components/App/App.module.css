@@ -2,25 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
-  background-color: #d4d3d3; 
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f2e2, #bbb9b1);
 }
 
 .moodBackground {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   width: 515px;
   height: 708px;
   border-radius: 50px;
-  background-color: #ECEDE7;
-
-  background-image:
-    linear-gradient(to right, #E2E3DB 1px, transparent 1px),
-    linear-gradient(to bottom, #E2E3DB 1px, transparent 1px);
-  background-size: 26px 26px;
 
   padding: 0 2rem;
-  box-sizing: border-box;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ecede7;
+
+  background-image: linear-gradient(to right, #e2e3db 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e3db 1px, transparent 1px);
+  background-size: 26px 26px;
 }
