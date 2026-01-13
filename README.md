@@ -19,8 +19,6 @@
 - Минималистичный, чистый интерфейс 
 
 ![Project Screenshot](/src/assets/screenshot/choice.png)
-![Project Screenshot](/src/assets/screenshot/note.png)
-![Project Screenshot](/src/assets/screenshot/note_done.png) 
 
 
 ## Цель проекта
