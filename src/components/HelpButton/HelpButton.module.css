@@ -1,0 +1,43 @@
+.button {
+  position: absolute;
+  right: -40px;
+  top: 28px;
+  width: 39px;
+  height: 39px;
+  background-color: #D5DACC;
+  border-radius: 100%;
+  border: none;
+
+  font-family: 'Yiggivoo Unicode', sans-serif;
+  font-size: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: rgba(112, 159, 229, 0.297);
+}
+
+.tooltipWrapper {
+  position: absolute;
+  top: 28px;
+  right: -295px;
+}
+
+.text {
+  margin: 2px;
+  text-align: left;
+}
+
+.steps {
+  list-style-type: none;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

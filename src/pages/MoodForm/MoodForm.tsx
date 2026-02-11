@@ -4,6 +4,7 @@ import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import { addMoodEntry } from "../../utils/storage";
+import HelpButton from "../../components/HelpButton/HelpButton";
 import styles from "./MoodForm.module.css";
 
 const MoodForm: React.FC = () => {
@@ -62,6 +63,7 @@ const MoodForm: React.FC = () => {
   //разметка формы
   return (
     <div className={styles.formWrapper}>
+      <HelpButton />
       {/* форма */}
       <form onSubmit={handleSubmit}>
         <h3 className={styles.color}>Цвет дня</h3>
