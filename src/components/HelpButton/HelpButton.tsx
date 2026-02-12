@@ -1,32 +1,17 @@
-import { useState } from "react";
+import React from "react";
 import styles from "./HelpButton.module.css";
+import type { HelpButtonProps } from "../../types";
 
-const HelpButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const HelpButton: React.FC<HelpButtonProps> = ({ onClick }) => {
   return (
     <>
       <button
         className={styles.button}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Как работает приложение"
+        onClick={onClick}
+        aria-label="Показать обучение"
       >
         ?
       </button>
-
-      {isOpen && (
-        <div className={styles.tooltipWrapper}>
-          <div>
-            <h3 className={styles.text}>Как пользоваться</h3>
-            <ul className={styles.steps}>
-              <li>1. Выбери цвет дня</li>
-              <li>2. Отметь настроение</li>
-              <li>3. Добавь заметку</li>
-            </ul>
-            <p>Записи сохраняются автоматически ✨</p>
-          </div>
-        </div>
-      )}
     </>
   );
 };

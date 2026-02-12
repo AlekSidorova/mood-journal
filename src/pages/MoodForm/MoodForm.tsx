@@ -16,6 +16,14 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   const [color, setColor] = useState<string>("");
   //состояние открытия и закрытия заметки
   const [isOpen, setIsOpen] = useState(false);
+  //состояние для кнопки помощи
+  const [isManualOnboarding, setIsManualOnboarding] = useState(false);
+
+  //обработчкик кнопки
+  const handleHelpClick = () => {
+    setIsManualOnboarding(true);
+    setOnboardingStep(0);
+  };
 
   //состояния для подсказок
   //проверка первого входа
@@ -27,11 +35,14 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
     return localStorage.getItem("hasSeenOnboarding") === "true" ? -1 : 0;
   });
 
+  const isOnboardingActive = !hasSeenOnboarding || isManualOnboarding;
+
   //логика переключения цветов
   const handleColorSelect = (selected: string) => {
     setColor(selected);
 
-    if (!hasSeenOnboarding && onboardingStep === 0) {
+    //для повторного открытия подсказок
+    if ((isOnboardingActive) && onboardingStep === 0) {
       setOnboardingStep(1);
     }
   };
@@ -57,7 +68,7 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   const handleMoodSelect = (selected: string) => {
     setMood(selected);
 
-    if (!hasSeenOnboarding && onboardingStep === 1) {
+    if (((isOnboardingActive) && onboardingStep === 1)) {
       setOnboardingStep(2);
     }
 
@@ -69,6 +80,10 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
     e?.preventDefault();
 
     if (!note.trim()) return; // запретить пустую заметку
+
+    if (isManualOnboarding) {
+      setIsManualOnboarding(false);
+    }
 
     //после первой отправки заметки
     if (!hasSeenOnboarding) {
@@ -93,7 +108,7 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   //разметка формы
   return (
     <div className={styles.formWrapper}>
-      <HelpButton />
+      <HelpButton onClick={handleHelpClick} />
       {/* форма */}
       <form onSubmit={handleSubmit}>
         <h3 className={styles.color}>Цвет дня</h3>
@@ -121,7 +136,9 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
         />
       )}
 
-      {!hasSeenOnboarding && <OnboardingHint step={onboardingStep} />}
+      {(isOnboardingActive) && (
+        <OnboardingHint step={onboardingStep} />
+      )}
     </div>
   );
 };

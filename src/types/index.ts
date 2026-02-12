@@ -34,6 +34,11 @@ export interface CardProps {
   entry: MoodEntry;
 };
 
+//интерфейс для кнопки знака вопроса
+export interface HelpButtonProps {
+  onClick: () => void;
+}
+
 //интерфейс для подсказок
 export interface OnboardingProps {
   step: number;
