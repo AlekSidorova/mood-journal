@@ -18,21 +18,15 @@ const MoodForm: React.FC = () => {
   //состояние открытия и закрытия заметки
   const [isOpen, setIsOpen] = useState(false);
 
-  //состояния для подсказок
-  const [hasSeenOnboarding, setHasSeenOnboarding] = useState<boolean>(false);
-  const [onboardingStep, setOnboardingStep] = useState<number>(0);
-
+  //состояния для подсказок 
   //проверка первого входа
-  useEffect(() => {
-    const seen = localStorage.getItem("hasSeenOnboarding");
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useState<boolean>(() => {
+    return localStorage.getItem("hasSeenOnboarding") === "true";
+  });
 
-    if (!seen) {
-      setHasSeenOnboarding(false);
-      setOnboardingStep(0);
-    } else {
-      setHasSeenOnboarding(true);
-    }
-  }, []);
+  const [onboardingStep, setOnboardingStep] = useState<number>(() => {
+    return localStorage.getItem("hasSeenOnboarding") === "true" ? -1 : 0;
+  });
 
   //логика переключения цветов
   const handleColorSelect = (selected: string) => {
@@ -75,13 +69,13 @@ const MoodForm: React.FC = () => {
   const handleSubmit = (e?: React.FormEvent | React.MouseEvent) => {
     e?.preventDefault();
 
+    if (!note.trim()) return; // запретить пустую заметку
+
     //после первой отправки заметки
     if (!hasSeenOnboarding) {
       localStorage.setItem("hasSeenOnboarding", "true");
       setHasSeenOnboarding(true);
     }
-
-    if (!note.trim()) return; // запретить пустую заметку
 
     const newEntry: MoodEntry = {
       id: Date.now().toString(),
