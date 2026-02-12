@@ -11,7 +11,11 @@ const messages = [
 const OnboardingHint: React.FC<OnboardingProps> = ({ step }) => {
   if (step > 2) return null;
 
-  return <div className={styles.hint}>{messages[step]}</div>;
+  return (
+    <div className={`${styles.hint} ${styles[`step${step}`]}`}>
+      {messages[step]}
+    </div>
+  );
 };
 
 export default OnboardingHint;

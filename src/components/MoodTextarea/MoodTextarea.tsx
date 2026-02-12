@@ -55,6 +55,7 @@ const MoodTextarea: React.FC<MoodTextareaProps> = ({
       {/* Крестик для закрытия */}
       <button type="button" className={styles.closeButton} onClick={() => onClose?.()}>
       </button>
+
     </div>
   );
 };
