@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import type { MoodEntry } from "../../types";
+import type { MoodEntry, MoodFormProps } from "../../types";
 import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
-import { addMoodEntry } from "../../utils/storage";
 import HelpButton from "../../components/HelpButton/HelpButton";
 import OnboardingHint from "../../components/OnboardingHint/OnboardingHint";
 import styles from "./MoodForm.module.css";
 
-const MoodForm: React.FC = () => {
+const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   //хранит текущее значение настроения-изначально оно пустое
   const [mood, setMood] = useState<string>("");
   //заметка о настроении
@@ -18,7 +17,7 @@ const MoodForm: React.FC = () => {
   //состояние открытия и закрытия заметки
   const [isOpen, setIsOpen] = useState(false);
 
-  //состояния для подсказок 
+  //состояния для подсказок
   //проверка первого входа
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState<boolean>(() => {
     return localStorage.getItem("hasSeenOnboarding") === "true";
@@ -85,7 +84,7 @@ const MoodForm: React.FC = () => {
       color,
     };
 
-    addMoodEntry(newEntry);
+    onAddEntry(newEntry);
 
     // очистка и закрытие заметки
     handleClose();

@@ -37,4 +37,12 @@ export interface CardProps {
 //интерфейс для подсказок
 export interface OnboardingProps {
   step: number;
+};
+
+export interface MoodFormProps {
+  onAddEntry: (entry: MoodEntry) => void;
+}
+
+export interface MoodListProps {
+  entries: MoodEntry[];
 }

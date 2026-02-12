@@ -1,31 +1,29 @@
 import React, { useEffect, useState, useRef } from "react";
-import type { MoodEntry } from "../../types";
-import { getMoodEntries } from "../../utils/storage";
+import type { MoodEntry, MoodListProps } from "../../types";
 import styles from "./MoodList.module.css";
 import MoodCard from "../../components/MoodCard/MoodCard";
 
 //сколько записей подгружаем за раз
 const ITEMS_PER_LOAD = 5;
 
-const MoodList: React.FC = () => {
-  const [allEntries, setAllEntries] = useState<MoodEntry[]>([]);
+const MoodList: React.FC<MoodListProps> = ({ entries }) => {
   const [visibleEntries, setVisibleEntries] = useState<MoodEntry[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = getMoodEntries().reverse();
-      setAllEntries(data);
-      setVisibleEntries(data.slice(0, ITEMS_PER_LOAD));
-    };
-
-    fetchData();
-  }, []);
+    setVisibleEntries(prev => {
+      const newLength = Math.max(prev.length, ITEMS_PER_LOAD);
+      return entries.slice(0, newLength);
+    });
+  }, [entries]);
 
   //функция подгрузки следующей порции
   const loadMore = () => {
+    //маленькая защита от лишней подгрузки
+    if (visibleEntries.length >= entries.length) return;
+    
     const currentLength = visibleEntries.length;
-    const nextEnteries = allEntries.slice(
+    const nextEnteries = entries.slice(
       currentLength,
       currentLength + ITEMS_PER_LOAD
     );
