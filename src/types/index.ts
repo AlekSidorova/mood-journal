@@ -33,3 +33,8 @@ export interface ColorPickerProps {
 export interface CardProps {
   entry: MoodEntry;
 };
+
+//интерфейс для подсказок
+export interface OnboardingProps {
+  step: number;
+}

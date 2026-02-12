@@ -32,7 +32,7 @@ content: "";
 .date {
   color: #000;
   font-family: "Yiggivoo Unicode", sans-serif;
-  font-size: 25px;
+  font-size: 22px;
   line-height: 125%;
   text-align: center;
 }
@@ -40,7 +40,7 @@ content: "";
 .time {
   color: #000;
   font-family: "Open Sans Light", sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   text-align: right;
 }
 
