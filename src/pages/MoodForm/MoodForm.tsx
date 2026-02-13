@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useEffectEvent } from "react";
 import type { MoodEntry, MoodFormProps } from "../../types";
 import MoodButtons from "../../components/MoodButtons/MoodButtons";
 import MoodTextarea from "../../components/MoodTextarea/MoodTextarea";
@@ -37,12 +37,16 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
 
   const isOnboardingActive = !hasSeenOnboarding || isManualOnboarding;
 
+  const openModal = useEffectEvent(() => {
+    setIsOpen(true);
+  });
+
   //логика переключения цветов
   const handleColorSelect = (selected: string) => {
     setColor(selected);
 
     //для повторного открытия подсказок
-    if ((isOnboardingActive) && onboardingStep === 0) {
+    if (isOnboardingActive && onboardingStep === 0) {
       setOnboardingStep(1);
     }
   };
@@ -68,12 +72,17 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   const handleMoodSelect = (selected: string) => {
     setMood(selected);
 
-    if (((isOnboardingActive) && onboardingStep === 1)) {
+    if (isOnboardingActive && onboardingStep === 1) {
       setOnboardingStep(2);
     }
-
-    if (color) setIsOpen(true); // открываем заметку только если цвет уже выбран
   };
+
+  //открываем модалку, когда оба значения заполнены, независимо от порядка
+  useEffect(() => {
+    if (color && mood) {
+      openModal();
+    }
+  }, [color, mood]);
 
   // универсальный handleSubmit для формы и кнопки
   const handleSubmit = (e?: React.FormEvent | React.MouseEvent) => {
@@ -136,9 +145,7 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
         />
       )}
 
-      {(isOnboardingActive) && (
-        <OnboardingHint step={onboardingStep} />
-      )}
+      {isOnboardingActive && <OnboardingHint step={onboardingStep} />}
     </div>
   );
 };
