@@ -20,9 +20,14 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
   const [isManualOnboarding, setIsManualOnboarding] = useState(false);
 
   //обработчкик кнопки
+  //(если подсказки открыты - закртыть и наоборот)
   const handleHelpClick = () => {
-    setIsManualOnboarding(true);
-    setOnboardingStep(0);
+    if (isManualOnboarding) {
+      setIsManualOnboarding(false);
+    } else {
+      setIsManualOnboarding(true);
+      setOnboardingStep(0);
+    }
   };
 
   //состояния для подсказок
@@ -59,7 +64,7 @@ const MoodForm: React.FC<MoodFormProps> = ({ onAddEntry }) => {
     setColor("");
     setIsOpen(false);
 
-     //после закрытия модалки подсказка сбрасывается на начало
+    //после закрытия модалки подсказка сбрасывается на начало
     setOnboardingStep(0);
   }, [setOnboardingStep]);
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import type { MoodEntry, MoodListProps } from "../../types";
+import React, { useState, useRef } from "react";
+import type { MoodListProps } from "../../types";
 import styles from "./MoodList.module.css";
 import MoodCard from "../../components/MoodCard/MoodCard";
 
@@ -7,27 +7,17 @@ import MoodCard from "../../components/MoodCard/MoodCard";
 const ITEMS_PER_LOAD = 5;
 
 const MoodList: React.FC<MoodListProps> = ({ entries }) => {
-  const [visibleEntries, setVisibleEntries] = useState<MoodEntry[]>([]);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setVisibleEntries(prev => {
-      const newLength = Math.max(prev.length, ITEMS_PER_LOAD);
-      return entries.slice(0, newLength);
-    });
-  }, [entries]);
+  const visibleEntries = entries.slice(0, visibleCount);
 
   //функция подгрузки следующей порции
   const loadMore = () => {
-    //маленькая защита от лишней подгрузки
-    if (visibleEntries.length >= entries.length) return;
-    
-    const currentLength = visibleEntries.length;
-    const nextEnteries = entries.slice(
-      currentLength,
-      currentLength + ITEMS_PER_LOAD
-    );
-    setVisibleEntries((prev) => [...prev, ...nextEnteries]);
+    //проверочка
+    if (visibleCount >= entries.length) return;
+
+    setVisibleCount((prev) => Math.min(prev + ITEMS_PER_LOAD, entries.length));
   };
 
   //обработка скролла
@@ -51,7 +41,9 @@ const MoodList: React.FC<MoodListProps> = ({ entries }) => {
       onScroll={handleScroll}
     >
       {visibleEntries.length === 0 && (
-        <p className={styles.empty}>Нет записей</p>
+        <p className={styles.empty}>
+          Здесь пока нет записей. Начни с выбора цвета и настроения 💞
+        </p>
       )}
       {visibleEntries.map((entry) => (
         <MoodCard key={entry.id} entry={entry} />
